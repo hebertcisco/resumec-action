@@ -1,6 +1,6 @@
 # resumec Action
 
-A reusable GitHub Action for validating resumes and generating PDF and DOCX files with [resumec](https://hebertcisco.github.io/resumec/). The Action downloads the official binary, verifies its SHA-256 checksum, and uses the runner tool cache. Consumer repositories do not need to install Rust.
+A reusable, dependency-free GitHub Action for validating resumes and generating PDF and DOCX files with [resumec](https://hebertcisco.github.io/resumec/). The Action downloads the official binary, verifies its SHA-256 checksum, and uses the runner tool cache. Consumer repositories do not need to install Rust or npm packages.
 
 ## Quick start
 
@@ -121,10 +121,10 @@ Node.js 24 is required:
 ```bash
 npm ci
 npm test
-npm run build
+npm run check
 ```
 
-The `dist/index.cjs` bundle is part of the Action distribution and must be updated for every release.
+The Action runs directly from `src/index.js` and has no runtime package dependencies. Generated `dist/` files are intentionally ignored.
 
 ## Action versioning
 

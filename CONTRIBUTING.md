@@ -9,15 +9,14 @@ Install Node.js 24, then run:
 ```bash
 npm ci
 npm test
-npm run build
+npm run check
 ```
 
-The generated `dist/index.cjs` file is part of the Action distribution. Include an updated bundle whenever source files or runtime dependencies change.
+The Action runs directly from `src/index.js` without runtime package dependencies. Do not commit generated `dist/` files.
 
 ## Pull requests
 
 - Keep changes focused and document user-facing behavior.
 - Add or update tests for behavior changes.
-- Run `npm test` and `npm run build` before submitting.
+- Run `npm run check` before submitting.
 - Do not include credentials, personal resume data, or generated resume files.
-

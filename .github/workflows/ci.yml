@@ -21,9 +21,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - run: npm run build
-      - name: Ensure the bundled action is current
-        run: git diff --exit-code -- dist/
 
   integration:
     name: Integration (${{ matrix.os }})
@@ -54,4 +51,3 @@ jobs:
         run: |
           test -f test-output/resume.pdf
           test -f test-output/resume.docx
-
