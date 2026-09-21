@@ -124,7 +124,7 @@ npm test
 npm run build
 ```
 
-The `dist/index.js` bundle is part of the Action distribution and must be updated for every release.
+The `dist/index.cjs` bundle is part of the Action distribution and must be updated for every release.
 
 ## Action versioning
 
