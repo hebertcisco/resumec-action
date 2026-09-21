@@ -12,7 +12,13 @@
   "engines": {
     "node": ">=24"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@actions/core": "3.0.1",
+    "@actions/exec": "3.0.0",
+    "@actions/tool-cache": "4.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
   "license": "MIT"
 }
