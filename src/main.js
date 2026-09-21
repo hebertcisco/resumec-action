@@ -1,11 +1,11 @@
-const fs = require("node:fs");
-const path = require("node:path");
-const core = require("@actions/core");
-const exec = require("@actions/exec");
-const toolCache = require("@actions/tool-cache");
+import fs from "node:fs";
+import path from "node:path";
+import * as core from "@actions/core";
+import * as exec from "@actions/exec";
+import * as toolCache from "@actions/tool-cache";
 
-const { getAsset } = require("./platform");
-const {
+import { getAsset } from "./platform.js";
+import {
   buildArguments,
   findExecutable,
   parseExtraArgs,
@@ -14,9 +14,9 @@ const {
   resolveVersion,
   validateArguments,
   verifyChecksum,
-} = require("./resumec");
+} from "./resumec.js";
 
-function getInputs() {
+export function getInputs() {
   return {
     command: core.getInput("command", { required: true }).toLowerCase(),
     input: core.getInput("input"),
@@ -32,7 +32,7 @@ function getInputs() {
   };
 }
 
-async function install(version, assetInfo) {
+export async function install(version, assetInfo) {
   let directory = toolCache.find("resumec", version, process.arch);
 
   if (!directory) {
@@ -67,7 +67,7 @@ async function install(version, assetInfo) {
   return binary;
 }
 
-async function run() {
+export async function run() {
   const inputs = getInputs();
   if (!new Set(["build", "validate", "install"]).has(inputs.command)) {
     throw new Error("command must be one of: build, validate, install");
@@ -120,6 +120,3 @@ async function run() {
     core.setOutput("files", JSON.stringify(files));
   }
 }
-
-module.exports = { getInputs, install, run };
-

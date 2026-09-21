@@ -1,7 +1,7 @@
-const assert = require("node:assert/strict");
-const test = require("node:test");
+import assert from "node:assert/strict";
+import test from "node:test";
 
-const { getAsset } = require("../src/platform");
+import { getAsset } from "../src/platform.js";
 
 test("maps supported runners to release assets", () => {
   assert.equal(getAsset("linux", "x64").asset, "resumec-linux-x86_64.tar.gz");
@@ -12,4 +12,3 @@ test("maps supported runners to release assets", () => {
 test("rejects runners without a published resumec binary", () => {
   assert.throws(() => getAsset("linux", "arm64"), /Unsupported runner/);
 });
-

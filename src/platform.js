@@ -16,7 +16,7 @@ const SUPPORTED_ASSETS = Object.freeze({
   },
 });
 
-function getAsset(platform = process.platform, arch = process.arch) {
+export function getAsset(platform = process.platform, arch = process.arch) {
   const key = `${platform}-${arch}`;
   const asset = SUPPORTED_ASSETS[key];
 
@@ -29,5 +29,4 @@ function getAsset(platform = process.platform, arch = process.arch) {
   return asset;
 }
 
-module.exports = { getAsset, SUPPORTED_ASSETS };
-
+export { SUPPORTED_ASSETS };

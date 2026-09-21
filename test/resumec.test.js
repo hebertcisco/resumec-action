@@ -1,7 +1,7 @@
-const assert = require("node:assert/strict");
-const test = require("node:test");
+import assert from "node:assert/strict";
+import test from "node:test";
 
-const {
+import {
   buildArguments,
   expectedChecksum,
   normalizeVersion,
@@ -10,7 +10,7 @@ const {
   releaseUrl,
   resolveVersion,
   validateArguments,
-} = require("../src/resumec");
+} from "../src/resumec.js";
 
 test("normalizes pinned versions", () => {
   assert.equal(normalizeVersion("v0.1.0"), "0.1.0");
@@ -88,4 +88,3 @@ test("parses resumec JSON output", () => {
   assert.deepEqual(parseResult('{"status":"success"}\n'), { status: "success" });
   assert.throws(() => parseResult("not-json"), /valid JSON/);
 });
-

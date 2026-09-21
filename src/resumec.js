@@ -1,11 +1,11 @@
-const crypto = require("node:crypto");
-const fs = require("node:fs");
-const path = require("node:path");
+import crypto from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
 
 const OWNER = "hebertcisco";
 const REPOSITORY = "resumec";
 
-function normalizeVersion(value) {
+export function normalizeVersion(value) {
   const requested = value.trim();
   if (requested === "latest") return requested;
 
@@ -16,7 +16,7 @@ function normalizeVersion(value) {
   return version;
 }
 
-async function resolveVersion(requested, token, fetchImpl = fetch) {
+export async function resolveVersion(requested, token, fetchImpl = fetch) {
   const normalized = normalizeVersion(requested);
   if (normalized !== "latest") return normalized;
 
@@ -42,11 +42,11 @@ async function resolveVersion(requested, token, fetchImpl = fetch) {
   return normalizeVersion(release.tag_name);
 }
 
-function releaseUrl(version, asset) {
+export function releaseUrl(version, asset) {
   return `https://github.com/${OWNER}/${REPOSITORY}/releases/download/v${version}/${asset}`;
 }
 
-function expectedChecksum(checksums, asset) {
+export function expectedChecksum(checksums, asset) {
   for (const line of checksums.split(/\r?\n/)) {
     const match = line.trim().match(/^([a-fA-F0-9]{64})\s+\*?(.+)$/);
     if (match && match[2] === asset) return match[1].toLowerCase();
@@ -60,7 +60,7 @@ function sha256(file) {
   return hash.digest("hex");
 }
 
-function verifyChecksum(file, checksumsFile, asset) {
+export function verifyChecksum(file, checksumsFile, asset) {
   const expected = expectedChecksum(fs.readFileSync(checksumsFile, "utf8"), asset);
   const actual = sha256(file);
   if (actual !== expected) {
@@ -70,7 +70,7 @@ function verifyChecksum(file, checksumsFile, asset) {
   }
 }
 
-function findExecutable(directory, executable) {
+export function findExecutable(directory, executable) {
   const pending = [directory];
   while (pending.length > 0) {
     const current = pending.pop();
@@ -83,7 +83,7 @@ function findExecutable(directory, executable) {
   throw new Error(`Executable ${executable} was not found after extraction`);
 }
 
-function parseExtraArgs(value) {
+export function parseExtraArgs(value) {
   let args;
   try {
     args = JSON.parse(value || "[]");
@@ -96,7 +96,7 @@ function parseExtraArgs(value) {
   return args;
 }
 
-function buildArguments(inputs) {
+export function buildArguments(inputs) {
   if (!inputs.input) throw new Error("input is required for build");
   const args = ["build", inputs.input];
   if (inputs.format) args.push("--format", inputs.format);
@@ -109,14 +109,14 @@ function buildArguments(inputs) {
   return args.concat(inputs.extraArgs);
 }
 
-function validateArguments(inputs) {
+export function validateArguments(inputs) {
   if (!inputs.input) throw new Error("input is required for validate");
   const args = ["validate", inputs.input];
   if (inputs.jsonOutput) args.push("--json-output");
   return args.concat(inputs.extraArgs);
 }
 
-function parseResult(stdout) {
+export function parseResult(stdout) {
   const trimmed = stdout.trim();
   if (!trimmed) return null;
   try {
@@ -126,18 +126,4 @@ function parseResult(stdout) {
   }
 }
 
-module.exports = {
-  OWNER,
-  REPOSITORY,
-  buildArguments,
-  expectedChecksum,
-  findExecutable,
-  normalizeVersion,
-  parseExtraArgs,
-  parseResult,
-  releaseUrl,
-  resolveVersion,
-  validateArguments,
-  verifyChecksum,
-};
-
+export { OWNER, REPOSITORY };

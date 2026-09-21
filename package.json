@@ -2,6 +2,7 @@
   "name": "resumec-action",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "GitHub Action for validating and building resumes with resumec",
   "main": "dist/index.js",
   "scripts": {
@@ -22,4 +23,3 @@
   },
   "license": "MIT"
 }
-
