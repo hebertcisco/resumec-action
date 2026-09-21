@@ -1,5 +1,5 @@
-name: resumec
-description: Validate and build ATS-friendly PDF and DOCX resumes with the resumec CLI
+name: resumec-action
+description: Validate and build ATS-friendly PDF and DOCX resumes with the resumec-action CLI
 author: Hebert Cisco
 
 branding:
@@ -16,7 +16,7 @@ inputs:
     required: false
     default: resume.yaml
   version:
-    description: resumec release version, with or without the v prefix, or latest
+    description: resumec-action release version, with or without the v prefix, or latest
     required: false
     default: v0.1.0
   format:
@@ -39,11 +39,11 @@ inputs:
     required: false
     default: "true"
   json-output:
-    description: Ask resumec for machine-readable JSON output
+    description: Ask resumec-action for machine-readable JSON output
     required: false
     default: "true"
   extra-args:
-    description: Additional resumec arguments encoded as a JSON string array
+    description: Additional resumec-action arguments encoded as a JSON string array
     required: false
     default: "[]"
   github-token:
@@ -52,15 +52,15 @@ inputs:
 
 outputs:
   version:
-    description: Installed resumec version
+    description: Installed resumec-action version
   binary-path:
-    description: Absolute path to the resumec executable
+    description: Absolute path to the resumec-action executable
   output-dir:
     description: Absolute output directory used by the build command
   files:
     description: JSON array containing the generated file paths
   result:
-    description: JSON returned by resumec when json-output is enabled
+    description: JSON returned by resumec-action when json-output is enabled
 
 runs:
   using: node24
