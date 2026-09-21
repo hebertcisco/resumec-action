@@ -1,0 +1,23 @@
+schema_version: 1
+basics:
+  name: Ada Lovelace
+  headline: Software Engineer
+  email: ada@example.com
+  location: London, UK
+  summary: Engineer focused on reliable analytical systems.
+work:
+  - company: Analytical Engines Ltd.
+    position: Software Engineer
+    start_date: 1842-01
+    end_date: 1843-12
+    highlights:
+      - Designed an algorithm for the Analytical Engine.
+education:
+  - institution: University of London
+    area: Mathematics
+    study_type: Independent studies
+skills:
+  - category: Programming
+    items:
+      - Algorithms
+      - Mathematics

@@ -1,0 +1,68 @@
+name: resumec
+description: Validate and build ATS-friendly PDF and DOCX resumes with the resumec CLI
+author: Hebert Cisco
+
+branding:
+  icon: file-text
+  color: blue
+
+inputs:
+  command:
+    description: Command to run (build, validate, or install)
+    required: false
+    default: build
+  input:
+    description: Path to the resume JSON, TOML, or YAML file
+    required: false
+    default: resume.yaml
+  version:
+    description: resumec release version, with or without the v prefix, or latest
+    required: false
+    default: v0.1.0
+  format:
+    description: Build output format (pdf, docx, or both)
+    required: false
+    default: both
+  theme:
+    description: Built-in or installed theme name
+    required: false
+    default: modern
+  output-dir:
+    description: Directory where generated files are written
+    required: false
+    default: dist
+  output-name:
+    description: Optional base name for generated files
+    required: false
+  overwrite:
+    description: Replace existing output files
+    required: false
+    default: "true"
+  json-output:
+    description: Ask resumec for machine-readable JSON output
+    required: false
+    default: "true"
+  extra-args:
+    description: Additional resumec arguments encoded as a JSON string array
+    required: false
+    default: "[]"
+  github-token:
+    description: Optional token used only to resolve version=latest
+    required: false
+
+outputs:
+  version:
+    description: Installed resumec version
+  binary-path:
+    description: Absolute path to the resumec executable
+  output-dir:
+    description: Absolute output directory used by the build command
+  files:
+    description: JSON array containing the generated file paths
+  result:
+    description: JSON returned by resumec when json-output is enabled
+
+runs:
+  using: node24
+  main: dist/index.js
+
